@@ -1,0 +1,10 @@
+# LLM Capability Framework (LCF)
+> A standard for mapping tasks to the most efficient model, token strategy, and reasoning layer.
+
+## Core Documentation
+- [Layer 1: Extraction](/1_Capability_Layers/layer_1_extraction.md): Deterministic parsing with distilled models.
+- [Layer 6: Agency](/1_Capability_Layers/layer_6_agency.md): Recursive decomposition and orchestration.
+
+## Patterns
+- [Two-Pass Execution](/2_Architectural_Patterns/scout_auditor_pattern/): Separating the Scout from the Auditor.
+- [Prompt Contract Integration](https://github.com/m3dcodie/prompt-contract): The protocol for enforcing these standards.
