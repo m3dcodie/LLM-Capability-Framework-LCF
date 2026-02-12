@@ -1,76 +1,105 @@
-## 1. Functional Definition
+# Layer 1: The Data Translator (Structural Extraction)
 
-Layer 1 is the **Normalization Layer**. Its task is to eliminate the "Entropy" of natural language by forcing it into a repeatable structure.
+**The Purpose:** This layer acts as the **System's Sensory Gateway**. Its job is to take unpredictable, messy input and turn it into a "Hard Contract" (clean, structured data) that your application can actually use without crashing.
 
-While the industry defaults to JSON, this layer is designed to support any **Schema-First** or **Token-Optimized** format.
+### 1. The Core Concept: From "Messy" to "Clean"
 
-### Supported Alignment Formats
+To understand Layer 1, we use two simple terms to describe data:
 
-| Format                    | Scenario                         | Benefit                                                    |
-| ------------------------- | -------------------------------- | ---------------------------------------------------------- |
-| **JSON / Pydantic**       | Enterprise APIs & Web Apps.      | Strict validation; native integration with Python/JS.      |
-| **TOON (Token-Oriented)** | High-volume, repetitive data.    | Saves ~40% tokens by removing quotes/braces; reduces cost. |
-| **CSV / Tabular**         | Large datasets / Log processing. | Highest information density; lowest "token overhead."      |
-| **Markdown / YAML**       | Human-in-the-loop (HITL).        | High readability for manual auditing steps.                |
-| **Vector Embeddings**     | RAG / Similarity Search.         | Direct semantic mapping without text generation.           |
+- **High-Entropy (The Mess):** This is your raw input—a rambling email, a blurry photo of a receipt, or a 50MB server log. It's "messy" because the information could be anywhere.
+- **Zero-Entropy (The Grid):** This is your output—a perfect JSON object or database row. It's "clean" because every piece of data has a specific, named home (e.g., `price: 10.00`).
+
+**The Capability:** Layer 1 is the model's ability to perform **Constraint Fidelity**. This just means "How well can the model follow the rules?" If you ask for a list of dates, a high-capability model won't add conversational fluff like _"Sure! Here are those dates..."_—it just gives you the data.
 
 ---
 
-## 2. Multi-Step Extraction Patterns
+### 2. Implementation Patterns
 
-Layer 1 is rarely a "single shot." To achieve **Fidelity** (Architectural Accuracy), the framework defines three primary execution patterns:
+We don't just "prompt and hope." We use three specific strategies based on the type of "Mess" we are dealing with:
 
-### A. The "Sequential Pipeline" (Scout-Auditor)
+#### Pattern A: "The Scout" (Operational Logic)
 
-- **Step 1:** Use a **Distilled Model** (4B-14B) to extract raw data.
-- **Step 2:** Use a **Frontier Model** (70B+) to verify that the extraction meets the "Prompt Contract."
-- **Use Case:** Compliance-heavy fields like Legal or Infrastructure.
+- **When to use:** When you have a massive amount of data and a tight budget or When you have high-volume data and Latency is the Priority.
+- **The Strategy:** Use a "Small-Spec", "distilled" model (like a 7B or 8B model) or specialized "Flash" models.
+- **Why it works:** You don't need a "super-brain" to find a phone number in a text file. The Scout is fast and literal. It acts as the "eyes" of your system. These models are designed for high Tokens-Per-Second (TPS). By sacrificing "deep thinking" (which we don't need for literal extraction), we gain immediate system responsiveness.
 
-### B. The "Consensus Swarm" (Parallel Validation)
+#### Pattern B: "The Fragmenter" (Processing Logic)
 
-- **Step 1:** Send the same prompt to **three different small models** (e.g., Qwen, Llama, Gemma).
-- **Step 2:** A logic layer (not an LLM) checks for a majority vote on specific fields.
-- **Use Case:** High-speed, high-volume data (e.g., parsing 10,000 resumes).
+- **When to use:** When your input is too big (e.g., a 200-page manual or 10,000 log lines).
+- **The Strategy:** Break the data into small "fragments," extract the info from each, and then stitch them together.
+- **Why it works:** It prevents the model from getting "confused" or forgetting the beginning of the document by the time it reaches the end.
 
-### C. The "Reflexive Loop" (Self-Correction)
+#### Pattern C: "The Semantic Mapper" (Visual/Context Logic)
 
-- **Step 1:** The model extracts data.
-- **Step 2:** A **Syntax Validator** checks the format (e.g., Pydantic or CSV linting).
-- **Step 3:** If it fails, the error is fed back to the model for a single "repair" turn.
-- **Use Case:** Highly messy documents where format failure is common.
+- **When to use:** Use this when the input volume is too large for a single "pass" (e.g., a 200-page infrastructure audit) or when the data is so complex that a single model might lose focus.
+- **The Strategy: The Intelligence Cascade**
+  - Step 1 (The Director): A Large Intelligence model (high-reasoning, large context) scans the entire "mess." It does not extract data; it only maps the boundaries. It identifies where one topic ends and another begins (e.g., "Network specs are on pages 1-40; Security starts at 41").
+  - Step 2 (The Workers): Small, distilled models are then assigned these specific "work packages." They perform the literal extraction with 100% focus on their small slice.
 
----
+- **Why it works:** It combines Global Vision with Local Precision. The Large Model ensures the "story" isn't lost during the split, while the Small Models ensure the final extraction is fast, cost-effective, and follows the "Hard Contract" without adding conversational fluff.
 
-## 3. Operational Logic: "The Scout"
+### Latency Strategy: "Speculative Extraction"
 
-The "Scout" is any model performing a Layer 1 task. It must follow the **Scout-Protocol**:
+In 2026, Senior Architects use a pattern called Speculative Extraction to solve the latency problem:
 
-1. **Literalism:** Do not fix the user's grammar. Do not answer questions. If the text says "Born in 199," extract "199," do not fix it to "1990."
-2. **Constraint Adherence:** The output format (whether TOON, CSV, or JSON) is a **Hard Contract**.
-3. **Noise Suppression:** The Scout must ignore creative layouts, marketing fluff, and irrelevant context. Its only "Attention" should be on the target fields.
+The Logic: Start a "Small Scout" immediately to extract obvious fields (Name, Date).
 
----
+The Parallel: Simultaneously, if the document looks "complex," spin up a "Large Director" (Pattern B) in the background.
 
-## 4. Implementation Strategy (Generic)
+The Result: The UI updates instantly with basic info while the "Deep Extraction" populates a few seconds later.
 
-To implement Layer 1, the framework requires a **Schema Contract**. This defines exactly what success looks like for the Scout.
+### 3. Selection Guide
 
-```markdown
-# [Scout Contract Template]
-
-1. TARGET_FORMAT: {JSON | TOON | CSV | YAML}
-2. SCHEMA_KEYS: {List of mandatory fields}
-3. NULL_PROTOCOL: {Define how to handle missing data}
-4. NO_THOUGHT_RULE: {Strict prohibition of conversational filler}
-```
+| If your input is...           | Use this Pattern        | Recommended Model Type                        |
+| ----------------------------- | ----------------------- | --------------------------------------------- |
+| **Simple & High Volume**      | **The Scout**           | Small, fast (e.g., Llama-8B)                  |
+| **Extremely Long**            | **The Fragmenter**      | Any model with high "Instruction Following"   |
+| **Images or Complex Layouts** | **The Semantic Mapper** | Multimodal/Vision models (e.g., Gemini Flash) |
 
 ---
 
-## 5. Summary Matrix for the Repo
+### Updated Selection Guide: The Efficiency Matrix
 
-| Factor                 | Recommendation                                       |
-| ---------------------- | ---------------------------------------------------- |
-| **Model Choice**       | Small, fast, distilled (optimized for instructions). |
-| **Reasoning Mode**     | Zero-Shot (Simple) or Few-Shot (Complex formats).    |
-| **Success Metric**     | **Schema Adherence Rate (SAR)**.                     |
-| **Architectural Role** | Pre-processing / Normalization.                      |
+To make this useful for a GitHub README or a technical spec, we’ve organized the model selection based on the "Primary Constraint" of your specific task.
+
+| Priority        | Pattern                    | Strategy                                          | Target Latency  | Best Use Case                                                        |
+| --------------- | -------------------------- | ------------------------------------------------- | --------------- | -------------------------------------------------------------------- |
+| **🚀 Velocity** | **Pattern A: The Scout**   | Use small-spec, high-TPS models (1B–8B).          | **< 500ms**     | Real-time chat data, simple log parsing, "live" UI updates.          |
+| **🎯 Accuracy** | **Pattern B: The Cascade** | Large "Director" splits data for "Worker" Scouts. | **2s – 8s**     | Complex legal docs, messy multi-page resumes, deep technical audits. |
+| **👁️ Vision**   | **Pattern C: The Mapper**  | Multimodal models with spatial grounding.         | **1s – 4s**     | Whiteboard photos, complex table layouts, architecture diagrams.     |
+| **💰 Economy**  | **The Aggregator**         | Batch processing with local Open Source models.   | **N/A (Async)** | Processing 10k+ files where cost is more critical than time.         |
+
+---
+
+### Selection Logic: The "Architect's Decision Tree"
+
+When deciding which path to take in Layer 1, ask these three questions in order:
+
+1. **Is it Visual?** \* _Yes:_ Use **Pattern C** (The Semantic Mapper).
+
+- _No:_ Proceed to question 2.
+
+2. **Is it too big for one "look"?** (e.g., > 10,000 words)
+
+- _Yes:_ Use **Pattern B** (The Intelligence Cascade/Fragmenter).
+- _No:_ Proceed to question 3.
+
+3. **Does a human need to see the result _now_?**
+
+- _Yes:_ Use **Pattern A** (The Scout).
+- _No:_ Use a larger, "lazy" model for higher accuracy at a lower cost-per-token.
+
+---
+
+### 4. Definition of Success (The KPI)
+
+Layer 1 is successful when it hits the **"Golden Ratio"** of extraction:
+
+> **[100% Schema Compliance]** + **[Zero Data Hallucination]** + **[Target Latency Met]**
+
+1. **Strict Compliance:** The output matches your code's expected format (e.g., Pydantic/JSON) 100% of the time.
+2. **No Inventions:** The model only reported what was there (Zero Hallucination).
+3. **Computational Economics:** Instead of just "Smallest and Cheapest," we measure success by Computational ROI. You achieved the target accuracy using the most efficient combination of models. If a large open-source model running on your own infra is cheaper per 1M tokens than a "Mini" model on a paid API, the larger model is the architectural winner.
+4. **Temporal Velocity (The Latency):** Did the extraction happen fast enough to keep the "Agentic Loop" alive?
+
+If your model is "smart" but takes 10 seconds to extract a name, it has failed the **Temporal Velocity** requirement of a high-performance Agentic system.
