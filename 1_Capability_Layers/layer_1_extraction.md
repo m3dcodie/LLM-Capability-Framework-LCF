@@ -73,3 +73,11 @@ Layer 1 is successful when it hits the **"Golden Ratio"** of extraction:
 1. **Strict Compliance:** The output matches your Pydantic/JSON schema 100% of the time.
 2. **Computational ROI:** You achieved target accuracy using the most efficient model. If an Open Source model on your local NVMe is cheaper/faster than a paid API, it is the architectural winner.
 3. **Temporal Velocity:** Did the extraction happen fast enough to keep the **Agentic Loop** alive? If a name takes 10 seconds to extract, the "Agent" feels broken to the user.
+
+---
+
+## Validation: Real-World Benchmark
+
+The effectiveness of Layer 1 extraction patterns is validated through real-world benchmark analysis. For a detailed comparison of model performance and schema adherence, see the [extraction accuracy analysis](../3_Evaluation_Benchmarks/extraction_accuracy_tests/analysis.md).
+
+This analysis demonstrates how different models perform on key metrics like Schema Adherence Rate (SAR) and Entity Extraction Rate (EER), providing practical evidence for the strategies described above.
