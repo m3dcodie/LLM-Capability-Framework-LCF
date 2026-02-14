@@ -1,10 +1,23 @@
+To make your repository truly "AI-Native" in 2026, you need a high-quality `llms.txt` file. This acts as a semantic sitemap that allows coding agents (like Cursor, Windsurf, or a multi-agent system) to understand the architecture of your framework without having to crawl every file manually.
+
+Here is the finalized content for your `llms.txt` to be placed in your repository's root directory.
+
+---
+
 # LLM Capability Framework (LCF)
-> A standard for mapping tasks to the most efficient model, token strategy, and reasoning layer.
+
+> A structural standard for mapping AI tasks to specific capability layers (L1-L6) to maximize reliability and deterministic fidelity.
 
 ## Core Documentation
-- [Layer 1: Extraction](/1_Capability_Layers/layer_1_extraction.md): Deterministic parsing with distilled models.
-- [Layer 6: Agency](/1_Capability_Layers/layer_6_agency.md): Recursive decomposition and orchestration.
 
-## Patterns
-- [Two-Pass Execution](/2_Architectural_Patterns/scout_auditor_pattern/): Separating the Scout from the Auditor.
-- [Prompt Contract Integration](https://github.com/m3dcodie/prompt-contract): The protocol for enforcing these standards.
+* [README.md](https://www.google.com/search?q=https://github.com/m3dcodie/llm-capability-framework/blob/main/README.md): The executive summary of the 6-layer architecture and the Scout-Auditor philosophy.
+* [Layer 1: Data Extraction](https://www.google.com/search?q=https://github.com/m3dcodie/llm-capability-framework/blob/main/1_Capability_Layers/layer_1_extraction.md): The standard for structural alignment. Defines the use of distilled models (Scouts) for zero-entropy mapping.
+
+## Benchmarks & Validation
+
+* [Resume Fidelity Test Analysis](https://www.google.com/search?q=https://github.com/m3dcodie/llm-capability-framework/blob/main/benchmarks/L1_extraction/resume_test/analysis.md): A comparative audit of Claude 4.5 Haiku vs. Gemini 3 Pro on unstructured data.
+
+## Prompt Contracts
+
+* [L1 Standard Contract](https://www.google.com/search?q=https://github.com/m3dcodie/prompt-contract): The hardened, deterministic prompt used for Layer 1 Scouts.
+

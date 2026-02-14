@@ -1,82 +1,67 @@
-# LLM Capability Framework (LCF)
+                          # LLM Capability Framework (LCF)
 
-**Stop over-paying for intelligence.** The LLM Capability Framework (LCF) is an architectural standard for mapping tasks to the most efficient model, token strategy, and reasoning layer.
+**Precision-Matched Intelligence.** The LLM Capability Framework (LCF) is a structural standard for mapping specific task requirements to the most effective model architecture, token strategy, and reasoning depth.
 
-In a 2026 production environment, "Vibe Coding" isn't enough. LCF provides the structural rigor needed to build reliable, cost-effective agentic systems by separating **Structural Alignment** from **Cognitive Reasoning**.
-
----
-
-## 📖 Table of Contents
-
-- [The 6-Layer Architecture](https://www.google.com/search?q=%23-the-6-layer-architecture)
-- [Core Philosophy: The Scout & The Auditor](https://www.google.com/search?q=%23-core-philosophy)
-- [Layer 1: Data Extraction](https://www.google.com/search?q=%23-layer-1-data-extraction)
-- [Multi-Step Patterns](https://www.google.com/search?q=%23-multi-step-patterns)
-- [AI-Native Integration (llms.txt)](https://www.google.com/search?q=%23-ai-native-integration)
-- [Contributing](https://www.google.com/search?q=%23-contributing)
+Production-grade AI systems fail when they treat the LLM as a "generalist box." LCF provides the rigor to separate **Structural Alignment** from **Cognitive Reasoning**, ensuring each component of your system is powered by a model matched to its functional requirements.
 
 ---
 
 ## 🏗 The 6-Layer Architecture
 
-Every LLM task fits into one primary capability layer. By identifying the layer, you can choose the correct model parameter count and reasoning mode.
+LCF categorizes every AI task into a specific capability layer. This allows architects to select models based on **Instruction Adherence**, **Reasoning Depth**, and **Contextual Breadth**.
 
-| Layer  | Name               | Primary Objective                      | Ideal Model Class      |
-| ------ | ------------------ | -------------------------------------- | ---------------------- |
-| **L1** | **Extraction**     | Unstructured Structured mapping.       | 4B-14B Distilled       |
-| **L2** | **Transformation** | Format/Language/Style conversion.      | 8B-32B General         |
-| **L3** | **Interpretation** | Intent, Sentiment, and Classification. | 14B-70B Logic-heavy    |
-| **L4** | **Synthesis**      | Merging disparate data points.         | 70B+ Frontier          |
-| **L5** | **Communication**  | Persona-driven human interaction.      | 32B+ Fine-tuned        |
-| **L6** | **Agency**         | Recursive decomposition & tool-use.    | o1/o3 Reasoning models |
-
----
-
-## 🛡 Core Philosophy
-
-### The Scout & The Auditor
-
-LCF mandates a separation of concerns.
-
-- **The Scout (Layer 1):** A small, fast model (e.g., Qwen 2.5 Coder) focused on **Fidelity**. It moves data without thinking.
-- **The Auditor (Layer 4/6):** A large, deep model (e.g., Claude 3.5 Sonnet) focused on **Logic**. It checks the Scout's work against organizational policy.
+| Layer  | Name               | Requirement Focus                         | Ideal Model Class      |
+| ------ | ------------------ | ----------------------------------------- | ---------------------- |
+| **L1** | **Extraction**     | Deterministic mapping; noise suppression. | 4B-14B Distilled       |
+| **L2** | **Transformation** | Format/Language/Style conversion.         | 8B-32B General         |
+| **L3** | **Interpretation** | Intent, Sentiment, and Classification.    | 14B-70B Logic-heavy    |
+| **L4** | **Synthesis**      | Cross-context data merging.               | 70B+ Frontier          |
+| **L5** | **Communication**  | Persona consistency & human nuance.       | 32B+ Fine-tuned        |
+| **L6** | **Agency**         | Recursive decomposition & tool-use.       | o1/o3 Reasoning models |
 
 ---
 
-## ⚡ Layer 1: Data Extraction
+## 🛡 Core Philosophy: Role-Based Orchestration
 
-Layer 1 is the **Normalization Layer**. It eliminates the entropy of natural language by forcing it into a repeatable structure (JSON, TOON, CSV, etc.).
+While models are generalists, **LCF Agents** are specialists. The framework uses a modular role system to ensure reliability.
 
-### Key Principles
+### The Foundation: The Scout & The Auditor
 
-- **Literalism:** No grammar fixes, no commentary.
-- **Format-Agnostic:** While JSON is the default, LCF supports **TOON** (Token-Oriented) for 40% cost reduction in high-volume tasks.
-- **Constraint Compliance:** Hard adherence to [Prompt Contracts](https://github.com/m3dcodie/prompt-contract).
+- **The Scout (Layer 1-2):** Optimized for **Fidelity**. Its goal is to move and format data without "thinking" or interpreting. It is a literalist.
+- **The Auditor (Layer 4/6):** Optimized for **Logic**. It takes the structured output of the Scout and verifies it against complex organizational policies or logic constraints.
 
----
+### Role Expansion
 
-## 🔄 Multi-Step Patterns
+The framework is extensible. Depending on your scenario, you may implement:
 
-LCF provides standardized execution patterns for high-reliability scenarios:
-
-1. **Sequential Pipeline (Scout-Auditor):** High reliability for infrastructure and legal audits.
-2. **Consensus Swarm:** Three small models voting on extraction to achieve "Frontier-level" accuracy at 1/10th the cost.
-3. **Reflexive Loop:** Automatic self-correction when syntax validation (Pydantic/CSV Lint) fails.
+- **The Architect (L6):** Decomposes complex user goals into sub-tasks.
+- **The Editor (L5):** Refines raw synthesis into brand-compliant communication.
 
 ---
 
-## 🤖 AI-Native Integration
+## ⚡ Layer 1: Data Extraction (The Standard)
 
-This repository is optimized for **AI Coding Agents** (Cursor, Windsurf, GitHub Copilot).
+Layer 1 is the **Normalization Layer**. It eliminates the entropy of natural language by forcing it into a repeatable protocol (JSON, TOON, CSV, YAML, etc.).
 
-- **`llms.txt`**: A machine-readable sitemap for agents.
-- **`.github/copilot-instructions.md`**: Best practices for AI contributors to ensure code stays within framework boundaries.
+- **Objective:** Map unstructured noise to deterministic system inputs.
+- **Metric:** **Schema Adherence Rate (SAR)** — The frequency of zero-deviation outputs.
+- **Constraint:** Prohibits conversational fluff, summaries, or apologies.
 
 ---
 
-## 🤝 Contributing
+## 🔄 Multi-Step Execution Patterns
 
-We welcome contributions to the **Pattern Library** and **Fidelity Benchmarks**.
+LCF defines standardized patterns for bridging the "Capability Gap" between models:
 
-1. Review the [Layer 1 Standard](https://www.google.com/search?q=./1_Capability_Layers/layer_1_extraction.md).
-2. Open a PR with your architectural pattern or model benchmark.
+1. **Sequential Pipeline:** The Scout-Auditor flow for high-stakes auditing.
+2. **Consensus Swarm:** Parallel extraction using multiple distilled models to achieve frontier-level accuracy at high speed.
+3. **Reflexive Loop:** Automated self-correction using programmatic syntax validators (Pydantic/CSV Lint).
+
+---
+
+## 🤖 AI-Native Documentation
+
+This repository includes:
+
+- **`llms.txt`**: A machine-readable sitemap for AI coding assistants.
+- **`.github/copilot-instructions.md`**: Architectural guardrails to maintain LCF standards during AI-assisted development.

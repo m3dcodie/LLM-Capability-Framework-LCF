@@ -2,104 +2,74 @@
 
 **The Purpose:** This layer acts as the **System's Sensory Gateway**. Its job is to take unpredictable, messy input and turn it into a "Hard Contract" (clean, structured data) that your application can actually use without crashing.
 
+**The Capability:** Layer 1 is the model's ability to perform **Constraint Fidelity**. This just means "How well can the model follow the rules?" If you ask for a list of dates, a high-capability model won't add conversational fluff like _"Sure! Here are those dates..."_—it just gives you the data.
+
+---
+
 ### 1. The Core Concept: From "Messy" to "Clean"
 
 To understand Layer 1, we use two simple terms to describe data:
 
-- **High-Entropy (The Mess):** This is your raw input—a rambling email, a blurry photo of a receipt, or a 50MB server log. It's "messy" because the information could be anywhere.
+- **High-Entropy (The Mess):** This is your raw input—a rambling email, a blurry photo of a receipt, or a 50MB server log. It's "messy" because the information is unstructured and unpredictable.
 - **Zero-Entropy (The Grid):** This is your output—a perfect JSON object or database row. It's "clean" because every piece of data has a specific, named home (e.g., `price: 10.00`).
-
-**The Capability:** Layer 1 is the model's ability to perform **Constraint Fidelity**. This just means "How well can the model follow the rules?" If you ask for a list of dates, a high-capability model won't add conversational fluff like _"Sure! Here are those dates..."_—it just gives you the data.
 
 ---
 
 ### 2. Implementation Patterns
 
-We don't just "prompt and hope." We use three specific strategies based on the type of "Mess" we are dealing with:
+We don't just "prompt and hope." We use specific strategies based on the volume and complexity of the "Mess":
 
 #### Pattern A: "The Scout" (Operational Logic)
 
-- **When to use:** When you have a massive amount of data and a tight budget or When you have high-volume data and Latency is the Priority.
-- **The Strategy:** Use a "Small-Spec", "distilled" model (like a 7B or 8B model) or specialized "Flash" models.
-- **Why it works:** You don't need a "super-brain" to find a phone number in a text file. The Scout is fast and literal. It acts as the "eyes" of your system. These models are designed for high Tokens-Per-Second (TPS). By sacrificing "deep thinking" (which we don't need for literal extraction), we gain immediate system responsiveness.
+- **When to use:** High-volume data where **Latency is the Priority** (e.g., real-time log parsing).
+- **The Strategy:** Use a "Small-Spec," distilled model (1B–8B parameters) or specialized "Flash" models.
+- **Why it works:** You don't need a "super-brain" to find a phone number. The Scout is fast and literal. By sacrificing "deep reasoning," we gain immediate system responsiveness and high **Tokens-Per-Second (TPS)**.
 
 #### Pattern B: "The Fragmenter" (Processing Logic)
 
-- **When to use:** When your input is too big (e.g., a 200-page manual or 10,000 log lines).
-- **The Strategy:** Break the data into small "fragments," extract the info from each, and then stitch them together.
-- **Why it works:** It prevents the model from getting "confused" or forgetting the beginning of the document by the time it reaches the end.
+- **When to use:** When your input exceeds the context window (e.g., a 2,000-page manual).
+- **The Strategy:** Use a **Sliding Window** to break data into overlapping "fragments," extract from each, and then perform a **Deduplication Pass**.
+- **Why it works:** It prevents "Mid-Context Loss" (where models forget the middle of a long document).
 
-#### Pattern C: "The Semantic Mapper" (Visual/Context Logic)
+#### Pattern C: "The Intelligence Cascade" (Architectural Logic)
 
-- **When to use:** Use this when the input volume is too large for a single "pass" (e.g., a 200-page infrastructure audit) or when the data is so complex that a single model might lose focus.
-- **The Strategy: The Intelligence Cascade**
-  - Step 1 (The Director): A Large Intelligence model (high-reasoning, large context) scans the entire "mess." It does not extract data; it only maps the boundaries. It identifies where one topic ends and another begins (e.g., "Network specs are on pages 1-40; Security starts at 41").
-  - Step 2 (The Workers): Small, distilled models are then assigned these specific "work packages." They perform the literal extraction with 100% focus on their small slice.
+- **When to use:** Complex, multi-topic documents (e.g., a 200-page infrastructure audit).
+- **The Strategy:**
 
-- **Why it works:** It combines Global Vision with Local Precision. The Large Model ensures the "story" isn't lost during the split, while the Small Models ensure the final extraction is fast, cost-effective, and follows the "Hard Contract" without adding conversational fluff.
+1. **Step 1 (The Director):** A Large Intelligence model (e.g., GPT-5 or Claude 4) scans the mess. It identifies boundaries (e.g., "Network specs are on pages 1-40").
+2. **Step 2 (The Workers):** Small, distilled "Scout" models are assigned these specific slices to perform literal extraction.
 
-### Latency Strategy: "Speculative Extraction"
-
-In 2026, Senior Architects use a pattern called Speculative Extraction to solve the latency problem:
-
-The Logic: Start a "Small Scout" immediately to extract obvious fields (Name, Date).
-
-The Parallel: Simultaneously, if the document looks "complex," spin up a "Large Director" (Pattern B) in the background.
-
-The Result: The UI updates instantly with basic info while the "Deep Extraction" populates a few seconds later.
-
-### 3. Selection Guide
-
-| If your input is...           | Use this Pattern        | Recommended Model Type                        |
-| ----------------------------- | ----------------------- | --------------------------------------------- |
-| **Simple & High Volume**      | **The Scout**           | Small, fast (e.g., Llama-8B)                  |
-| **Extremely Long**            | **The Fragmenter**      | Any model with high "Instruction Following"   |
-| **Images or Complex Layouts** | **The Semantic Mapper** | Multimodal/Vision models (e.g., Gemini Flash) |
+- **Why it works:** It combines **Global Vision** with **Local Precision**.
 
 ---
 
-### Updated Selection Guide: The Efficiency Matrix
+### 3. Latency Strategy: "Speculative Extraction"
 
-To make this useful for a GitHub README or a technical spec, we’ve organized the model selection based on the "Primary Constraint" of your specific task.
+In 2026, Senior Architects use **Speculative Extraction** to mask the "Reasoning Tax" of large models:
 
-| Priority        | Pattern                    | Strategy                                          | Target Latency  | Best Use Case                                                        |
-| --------------- | -------------------------- | ------------------------------------------------- | --------------- | -------------------------------------------------------------------- |
-| **🚀 Velocity** | **Pattern A: The Scout**   | Use small-spec, high-TPS models (1B–8B).          | **< 500ms**     | Real-time chat data, simple log parsing, "live" UI updates.          |
-| **🎯 Accuracy** | **Pattern B: The Cascade** | Large "Director" splits data for "Worker" Scouts. | **2s – 8s**     | Complex legal docs, messy multi-page resumes, deep technical audits. |
-| **👁️ Vision**   | **Pattern C: The Mapper**  | Multimodal models with spatial grounding.         | **1s – 4s**     | Whiteboard photos, complex table layouts, architecture diagrams.     |
-| **💰 Economy**  | **The Aggregator**         | Batch processing with local Open Source models.   | **N/A (Async)** | Processing 10k+ files where cost is more critical than time.         |
+1. **The Scout:** Starts immediately to extract obvious fields (Name, ID) for instant UI updates.
+2. **The Auditor:** Simultaneously, a larger model runs in the background to verify complex logic (e.g., "Does this ID match our 2026 security format?").
+3. **The Result:** The user sees the data in **<200ms**, while the "Deep Verification" status populates a few seconds later.
 
 ---
 
-### Selection Logic: The "Architect's Decision Tree"
+### 4. Selection Guide: The Efficiency Matrix
 
-When deciding which path to take in Layer 1, ask these three questions in order:
-
-1. **Is it Visual?** \* _Yes:_ Use **Pattern C** (The Semantic Mapper).
-
-- _No:_ Proceed to question 2.
-
-2. **Is it too big for one "look"?** (e.g., > 10,000 words)
-
-- _Yes:_ Use **Pattern B** (The Intelligence Cascade/Fragmenter).
-- _No:_ Proceed to question 3.
-
-3. **Does a human need to see the result _now_?**
-
-- _Yes:_ Use **Pattern A** (The Scout).
-- _No:_ Use a larger, "lazy" model for higher accuracy at a lower cost-per-token.
+| Priority        | Pattern            | Strategy                          | Target Latency | Best Use Case                      |
+| --------------- | ------------------ | --------------------------------- | -------------- | ---------------------------------- |
+| **🚀 Velocity** | **The Scout**      | Small-spec, high-TPS (1B–8B).     | **< 500ms**    | Real-time chat, simple logs.       |
+| **🎯 Accuracy** | **The Cascade**    | Director splits data for Workers. | **2s – 8s**    | Legal docs, deep technical audits. |
+| **👁️ Vision**   | **The Mapper**     | Multimodal spatial grounding.     | **1s – 4s**    | Whiteboard photos, infra diagrams. |
+| **💰 Economy**  | **The Aggregator** | Async batch processing.           | **N/A**        | Processing 10k+ archive files.     |
 
 ---
 
-### 4. Definition of Success (The KPI)
+### 5. Definition of Success (The KPI)
 
 Layer 1 is successful when it hits the **"Golden Ratio"** of extraction:
 
-> **[100% Schema Compliance]** + **[Zero Data Hallucination]** + **[Target Latency Met]**
+> **[100% Schema Compliance]** + **[Zero Hallucination]** + **[Target Latency Met]**
 
-1. **Strict Compliance:** The output matches your code's expected format (e.g., Pydantic/JSON) 100% of the time.
-2. **No Inventions:** The model only reported what was there (Zero Hallucination).
-3. **Computational Economics:** Instead of just "Smallest and Cheapest," we measure success by Computational ROI. You achieved the target accuracy using the most efficient combination of models. If a large open-source model running on your own infra is cheaper per 1M tokens than a "Mini" model on a paid API, the larger model is the architectural winner.
-4. **Temporal Velocity (The Latency):** Did the extraction happen fast enough to keep the "Agentic Loop" alive?
-
-If your model is "smart" but takes 10 seconds to extract a name, it has failed the **Temporal Velocity** requirement of a high-performance Agentic system.
+1. **Strict Compliance:** The output matches your Pydantic/JSON schema 100% of the time.
+2. **Computational ROI:** You achieved target accuracy using the most efficient model. If an Open Source model on your local NVMe is cheaper/faster than a paid API, it is the architectural winner.
+3. **Temporal Velocity:** Did the extraction happen fast enough to keep the **Agentic Loop** alive? If a name takes 10 seconds to extract, the "Agent" feels broken to the user.

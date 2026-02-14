@@ -1,0 +1,55 @@
+{
+  "document_name": "M Suhail Resume",
+  "document_type": "PDF",
+  "classification": [
+    {
+      "category": "Resume",
+      "confidence_score": "100"
+    },
+    {
+      "category": "CV",
+      "confidence_score": "95"
+    }
+  ],
+  "extracted_data": {
+    "Personal information": {
+      "Name": "M Suhail",
+      "Email": "nospam@gmail.com",
+      "Mobile": "+61 431 123 456",
+      "Location": "Sydney",
+      "LinkedIn": "linkedin.com/in/suhail-tahir",
+      "GitHub": "https://github.com/m3dcodie"
+    },
+    "Core Technical Expertise": {
+      "Languages": "TypeScript, Node.js, Python, Go",
+      "Databases": "DynamoDB, RDS MySQL, PostgreSQL",
+      "Cloud & Architecture": "AWS, Microservices, Serverless, Event-driven systems, Automation, Migrations to cloud",
+      "Frontend": "React, NextJS"
+    },
+    "Experience": [
+      {
+        "Role": "Senior Software Engineer",
+        "Company": "BigB",
+        "Location": "Sydney",
+        "Duration": "August 2024 – Aug 2025",
+        "Description": "Architected cloud-native serverless solutions on AWS. Implemented integration framework connecting 50+ internal/third-party apps. Utilized Python, Terraform, AWS Lambda, EKS, S3, etc."
+      },
+      {
+        "Role": "Senior Software Engineer",
+        "Company": "Global",
+        "Location": "Sydney, AU",
+        "Duration": "Jan 2023 – July 2024",
+        "Description": "Designed and contributed to SaaS platform for energy sector on AWS. Adopted event-driven architecture using SQS, SNS, EventBridge. Developed services in Node.js, TypeScript, and Go."
+      }
+    ],
+    "Education": "Masters in IT 2013 - University of Canberra. Australia",
+    "Certifications": [
+      "AWS Certified AI Practitioner Early Adopter - Jan 2025",
+      "AWS Solutions Architect Professional - Feb 2021",
+      "AWS Solutions Architect – Associate - Feb 2019",
+      "Guinness World Records title for AI lesson completion (Microsoft AI Skills Fest)"
+    ],
+    "Tools/Tech Stack": "Typescript, NodeJS, NextJS, React, GO, AWS CDK, Terraform, Lambda, Step function, ECS, ECR, DynamoDB, API Gateway, Eventbridge, S3, SNS, SQS, KMS, SSM, CI/CD, Bitbucket, Github Copilot",
+    "Interests": "Health & Fitness, Cricket, Reading, BBQ, Running (Round the bays 2020, 2019)"
+  }
+}
