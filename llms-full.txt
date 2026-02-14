@@ -1,0 +1,64 @@
+## 1. Core Standard: Layer 1 (Data Extraction)
+
+**Role:** The Scout
+
+**Objective:** Structural Alignment — Mapping unstructured noise to a deterministic protocol.
+
+**Success Metric:** Schema Adherence Rate (SAR) & Entity Extraction Rate (EER).
+
+### Functional Definition
+
+Layer 1 is the **System's Sensory Gateway**. Its purpose is to eliminate "Natural Language Entropy" by forcing input into a repeatable, typed structure (JSON, TOON, CSV, or YAML).
+
+### Model Selection: The Scout Principle
+
+LCF mandates the use of **Distilled Models (4B-14B)** for Layer 1.
+
+* **The Intelligence Paradox:** Large reasoning models (Directors) often suffer from "Agentic Laziness" or "Summarization Bias," leading to data loss.
+* **The Scout Advantage:** Models like **Claude 4.5 Haiku** treat Prompt Contracts as rigid code constraints, resulting in higher data density and lower latency.
+
+### Implementation Patterns
+
+1. **The Sequential Pipeline (Scout-Auditor):** Pass 1 (The Scout) performs high-speed literal extraction. Pass 2 (The Auditor) uses a larger model to check logic.
+2. **The Intelligence Cascade:** A "Director" model maps document boundaries and delegates specific "work packages" to multiple "Scout" models for parallel processing.
+
+---
+
+## 2. Validation: Resume Fidelity Benchmark
+
+**Test Case:** M Suhail Tahir CV (3-page complex PDF)
+
+**Models:** Claude 4.5 Haiku vs. Gemini 3 Pro
+
+### Comparative Findings
+
+* **Claude 4.5 Haiku:** 11s TTFT | 100% Schema Adherence | 22+ Entities Extracted.
+* **Gemini 3 Pro:** 11s TTFT | 92% Schema Adherence | 6 Entities Extracted (Summarized).
+
+### Technical Insight: "Context Awareness"
+
+Claude 4.5 Haiku utilizes explicit **Context Awareness**. It identifies its available token budget and uses it to perform high-density extraction, capturing granular technical signals (e.g., individual AWS services) that larger models prematurely "summarize" due to agentic laziness.
+
+---
+
+## 3. The L1 Prompt Contract (Standard)
+
+```markdown
+## STRICT EXTRACTION PROTOCOL:
+- PERCEPTION: You are a literalist data-entry machine. 
+- NO SUMMARIZATION: Every bullet point in the source must be its own string in a list. DO NOT aggregate duties.
+- ZERO CONVERSATION: Output the JSON object ONLY. No preambles.
+- ENTITY PRESERVATION: Use the exact text found. Do not "improve" titles.
+
+```
+
+---
+
+## 4. Philosophical Foundation (Manifesto)
+
+The LCF is built on the belief that **Deterministic Architecture** is the bridge between human intent and machine execution.
+
+* **The Scout** moves the earth (data alignment).
+* **The Architect** builds the sky (reasoning/agency).
+By ensuring Layer 1 is a "Zero-Entropy" zone, we enable the higher layers to reason over facts, not hallucinations.
+

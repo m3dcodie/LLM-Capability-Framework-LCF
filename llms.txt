@@ -1,21 +1,15 @@
-To make your repository truly "AI-Native" in 2026, you need a high-quality `llms.txt` file. This acts as a semantic sitemap that allows coding agents (like Cursor, Windsurf, or a multi-agent system) to understand the architecture of your framework without having to crawl every file manually.
-
-Here is the finalized content for your `llms.txt` to be placed in your repository's root directory.
-
----
-
 # LLM Capability Framework (LCF)
 
 > A structural standard for mapping AI tasks to specific capability layers (L1-L6) to maximize reliability and deterministic fidelity.
 
 ## Core Documentation
 
-* [README.md](https://www.google.com/search?q=https://github.com/m3dcodie/llm-capability-framework/blob/main/README.md): The executive summary of the 6-layer architecture and the Scout-Auditor philosophy.
-* [Layer 1: Data Extraction](https://www.google.com/search?q=https://github.com/m3dcodie/llm-capability-framework/blob/main/1_Capability_Layers/layer_1_extraction.md): The standard for structural alignment. Defines the use of distilled models (Scouts) for zero-entropy mapping.
+* [README.md](https://www.google.com/search?q=https://github.com/m3dcodie/LLM-Capability-Framework-LCF/blob/main/README.md): The executive summary of the 6-layer architecture and the Scout-Auditor philosophy.
+* [Layer 1: Data Extraction](https://www.google.com/search?q=https://github.com/m3dcodie/LLM-Capability-Framework-LCF/blob/main/1_Capability_Layers/layer_1_extraction.md): The standard for structural alignment. Defines the use of distilled models (Scouts) for zero-entropy mapping.
 
 ## Benchmarks & Validation
 
-* [Resume Fidelity Test Analysis](https://www.google.com/search?q=https://github.com/m3dcodie/llm-capability-framework/blob/main/benchmarks/L1_extraction/resume_test/analysis.md): A comparative audit of Claude 4.5 Haiku vs. Gemini 3 Pro on unstructured data.
+* [Resume Fidelity Test Analysis](https://www.google.com/search?q=https://github.com/m3dcodie/LLM-Capability-Framework-LCF/blob/main/benchmarks/L1_extraction/analysis.md): A comparative audit of Claude 4.5 Haiku vs. Gemini 3 Pro on unstructured data.
 
 ## Prompt Contracts
 
