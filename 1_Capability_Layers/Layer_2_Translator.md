@@ -31,6 +31,9 @@ While Layer 1 favored the literalist "Scout" (Haiku 4.5), Layer 2 requires a mod
 
 - **Alternative:** **Claude 4.5 Sonnet** remains the standard for high-complexity stylistic mapping where professional prose quality is as vital as factual density.
 
+**Validation**
+[See benchmark results and tests in [../3_Evaluation_Benchmarks/the_translator_tests](../3_Evaluation_Benchmarks/the_translator_tests)]
+
 ---
 
 ## 3. The Layer 2 Prompt Contract
@@ -59,18 +62,3 @@ Validation in Layer 2 measures **"Semantic Drift."**
 
 - **Pass:** All technical entities (skills, dates, metrics) match.
 - **Fail:** Entities were "summarized away" or hallucinated during the rewrite.
-
----
-
-## 5. Benchmarking Results (Resume Context)
-
-| Model                | Latency | SRR Score | Tone Adherence |
-| -------------------- | ------- | --------- | -------------- |
-| **Llama 3.1 8B**     | 1.2s    | 94%       | Excellent      |
-| **Gemini 2.0 Flash** | 0.8s    | **98%**   | **Superior**   |
-| **Claude 4.5 Haiku** | 1.1s    | 96%       | Rigid/Literal  |
-
-**Validation**
-[See benchmark results and tests in [../3_Evaluation_Benchmarks/the_translator_tests](../3_Evaluation_Benchmarks/the_translator_tests)]
-
-**Architect's Note:** For Layer 2, **Gemini 2.0 Flash** is the current recommendation due to its ability to maintain factual density while following complex stylistic instructions.
