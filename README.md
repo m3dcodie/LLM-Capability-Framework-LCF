@@ -43,23 +43,44 @@ The framework is extensible. Depending on your scenario, you may implement:
 
 Layer 1 is the **Normalization Layer**. It eliminates the entropy of natural language by forcing it into a repeatable protocol (JSON, TOON, CSV, YAML, etc.).
 
+[See extraction protocol details in [1_Capability_Layers/layer_1_extraction.md](1_Capability_Layers/layer_1_extraction.md)]
+
 - **Objective:** Map unstructured noise to deterministic system inputs.
 - **Metric:** **Schema Adherence Rate (SAR)** — The frequency of zero-deviation outputs.
 - **Constraint:** Prohibits conversational fluff, summaries, or apologies.
 
 ---
 
-## 🔄 Multi-Step Execution Patterns
+## Layer 2: Transformation (The Translator)
 
-LCF defines standardized patterns for bridging the "Capability Gap" between models:
+**Role:** **Type B (The Engineer)** — Implementation-focused adaptation.
 
-1. **Sequential Pipeline:** The Scout-Auditor flow for high-stakes auditing.
-2. **Consensus Swarm:** Parallel extraction using multiple distilled models to achieve frontier-level accuracy at high speed.
-3. **Reflexive Loop:** Automated self-correction using programmatic syntax validators (Pydantic/CSV Lint).
+**Objective:** **Semantic Morphing** — Converting the "Zero-Entropy" JSON from Layer 1 into a specific target narrative or schema without losing fact-density.
+
+[See transformation protocol details in [1_Capability_Layers/Layer_2_Translator.md](1_Capability_Layers/Layer_2_Translator.md)]
+
+# Architectural Analysis: The Latency/Fidelity Trade-off
+
+Through a multi-model "Mirror Test," we have validated a core tenet of the **LLM Capability Framework (LCF)**:
+**Validation**
+[See benchmark results and tests in [3_Evaluation_Benchmarks/the_translator_tests](3_Evaluation_Benchmarks/the_translator_tests)]
+
+> **"Fidelity is a feature of persistence, not speed."**
+
+### Key Findings:
+
+1. **Gemini 3 Flash** (4s TTFT) outperformed **Qwen 3 Max** (2s TTFT) in **Semantic Retention (SRR)**.
+2. The extra 2 seconds of latency in Gemini allowed the model to process the "Achievements" key, ensuring the **Guinness World Record** was preserved in the output.
+3. **Claude 4.5 Haiku** (1.5s TTFT) remains the gold standard for **Auditing**, capable of identifying exactly where data was lost during the transformation phase.
+
+### Final Framework Recommendation for Layer 2:
+
+- **Primary:** Gemini 3 Flash (For production-grade fidelity).
+- **Secondary:** Claude 4.5 Sonnet (For high-stylized professional prose).
 
 ---
 
-## 🤖 AI-Native Documentation
+## AI-Native Documentation
 
 This repository includes:
 
