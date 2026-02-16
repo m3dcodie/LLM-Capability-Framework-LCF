@@ -4,14 +4,15 @@
 
 ## Core Documentation
 
-* [README.md](https://www.google.com/search?q=https://github.com/m3dcodie/LLM-Capability-Framework-LCF/blob/main/README.md): The executive summary of the 6-layer architecture and the Scout-Auditor philosophy.
-* [Layer 1: Data Extraction](https://www.google.com/search?q=https://github.com/m3dcodie/LLM-Capability-Framework-LCF/blob/main/1_Capability_Layers/layer_1_extraction.md): The standard for structural alignment. Defines the use of distilled models (Scouts) for zero-entropy mapping.
+* [README.md](https://github.com/m3dcodie/LLM-Capability-Framework-LCF/blob/main/README.md): The executive summary of the 6-layer architecture and the Scout-Auditor philosophy.
+* [Layer 1: Data Extraction](https://github.com/m3dcodie/LLM-Capability-Framework-LCF/blob/main/1_Capability_Layers/layer_1_extraction.md): The standard for structural alignment. Defines the use of distilled models (Scouts) for zero-entropy mapping.
 
 ## Benchmarks & Validation
 
-* [Resume Fidelity Test Analysis](https://www.google.com/search?q=https://github.com/m3dcodie/LLM-Capability-Framework-LCF/blob/main/benchmarks/L1_extraction/analysis.md): A comparative audit of Claude 4.5 Haiku vs. Gemini 3 Pro on unstructured data.
+* [Resume Fidelity Test Analysis](https://github.com/m3dcodie/LLM-Capability-Framework-LCF/tree/main/3_Evaluation_Benchmarks/extraction_accuracy_tests): A comparative audit of Claude 4.5 Haiku vs. Gemini 3 Pro on unstructured data.
+* [Resume Transformation-focused](https://github.com/m3dcodie/LLM-Capability-Framework-LCF/tree/main/3_Evaluation_Benchmarks/the_translator_tests): A comparative audit of Gemini 3 Flash vs. Qwen 3 Max on structured data.
 
 ## Prompt Contracts
 
-* [L1 Standard Contract](https://www.google.com/search?q=https://github.com/m3dcodie/prompt-contract): The hardened, deterministic prompt used for Layer 1 Scouts.
+* [L1 Standard Contract](https://www.google.com/search?q=https://github.com/m3dcodie/prompt-contract): The hardened, deterministic prompt used for Layers.
 
