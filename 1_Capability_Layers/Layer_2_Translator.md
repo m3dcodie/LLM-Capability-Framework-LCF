@@ -20,7 +20,7 @@ Layer 2 is the **Linguistic Bridge**. It takes the rigid, literal data extracted
 
 ---
 
-## 2. Model Selection: The Engineer (Gemini 3 Flash / Claude 3.5 Sonnet)
+## 2. Model Selection: The Engineer (Gemini 3 Flash / Claude 4.5 Sonnet)
 
 While Layer 1 favored the literalist "Scout" (Haiku 4.5), Layer 2 requires a model with a broader **semantic grasp** and superior **instruction breadth**. The goal is a model that can synthesize a narrative without filtering out technical signal.
 
@@ -30,6 +30,9 @@ While Layer 1 favored the literalist "Scout" (Haiku 4.5), Layer 2 requires a mod
 - **The Latency/Fidelity Trade-off:** While Gemini 3 Flash (4s) may be slower than Qwen 3 Max (2s), the extra 2 seconds of latency results in **Zero Data Loss**, making it the safer architectural choice for production-grade translation.
 
 - **Alternative:** **Claude 4.5 Sonnet** remains the standard for high-complexity stylistic mapping where professional prose quality is as vital as factual density.
+
+**Validation**
+[See benchmark results and tests in [../3_Evaluation_Benchmarks/the_translator_tests](../3_Evaluation_Benchmarks/the_translator_tests)]
 
 ---
 
@@ -62,15 +65,4 @@ Validation in Layer 2 measures **"Semantic Drift."**
 
 ---
 
-## 5. Benchmarking Results (Resume Context)
-
-| Model                | Latency | SRR Score | Tone Adherence |
-| -------------------- | ------- | --------- | -------------- |
-| **Llama 3.1 8B**     | 1.2s    | 94%       | Excellent      |
-| **Gemini 2.0 Flash** | 0.8s    | **98%**   | **Superior**   |
-| **Claude 4.5 Haiku** | 1.1s    | 96%       | Rigid/Literal  |
-
-**Validation**
-[See benchmark results and tests in [../3_Evaluation_Benchmarks/the_translator_tests](../3_Evaluation_Benchmarks/the_translator_tests)]
-
-**Architect's Note:** For Layer 2, **Gemini 2.0 Flash** is the current recommendation due to its ability to maintain factual density while following complex stylistic instructions.
+**Architect's Note:** For Layer 2, **Gemini 3.0 Flash** is the current recommendation due to its ability to maintain factual density while following complex stylistic instructions.
