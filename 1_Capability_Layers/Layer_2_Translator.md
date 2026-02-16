@@ -20,7 +20,7 @@ Layer 2 is the **Linguistic Bridge**. It takes the rigid, literal data extracted
 
 ---
 
-## 2. Model Selection: The Engineer (Gemini 3 Flash / Claude 3.5 Sonnet)
+## 2. Model Selection: The Engineer (Gemini 3 Flash / Claude 4.5 Sonnet)
 
 While Layer 1 favored the literalist "Scout" (Haiku 4.5), Layer 2 requires a model with a broader **semantic grasp** and superior **instruction breadth**. The goal is a model that can synthesize a narrative without filtering out technical signal.
 
